@@ -6,10 +6,11 @@ public class Transactions {
     //tabla contactos
     public static final String table_contacts="contacts";
     public static final String id_country="id_country";
+    public static final String id="id";
     public static final String name="name";
     public static final String phone="phone";
     public static final String note="note";
-    public static final String image="image";
+    public static final String photo="photo";
 
     public static final String create_table_contacts="CREATE TABLE contacts(id_contact INTEGER PRIMARY KEY AUTOINCREMENT, id_country INT, name TEXT, phone INTEGER, note TEXT, image BLOB, FOREIGN KEY(id_country) REFERENCES countries(id_contry))";
     public static final String drop_table_contacts="DROP TABLE IF EXISTS contacts";
