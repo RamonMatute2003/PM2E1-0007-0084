@@ -1,4 +1,4 @@
-package com.example.pm2e1_0007_0084.models;
+package com.example.pm2e1_0007_0084.Settings;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

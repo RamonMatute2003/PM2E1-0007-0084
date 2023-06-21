@@ -1,4 +1,4 @@
-package com.example.pm2e1_0007_0084;
+package com.example.pm2e1_0007_0084.Models;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,8 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 
-import com.example.pm2e1_0007_0084.models.SQLite_conecction;
-import com.example.pm2e1_0007_0084.models.Transactions;
+import com.example.pm2e1_0007_0084.MainActivity;
+import com.example.pm2e1_0007_0084.Settings.SQLite_conecction;
+import com.example.pm2e1_0007_0084.Settings.Transactions;
 
 public class Countries extends SQLite_conecction {
 

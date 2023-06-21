@@ -1,4 +1,4 @@
-package com.example.pm2e1_0007_0084.models;
+package com.example.pm2e1_0007_0084.Settings;
 
 public class Transactions {
     public static final String name_database="Exa1";
@@ -19,7 +19,7 @@ public class Transactions {
     public static final String table_countries="countries";
     public static final String country="country";
 
-    public static final String create_table_countries="CREATE TABLE countries(id_country INTEGER PRIMARI KEY AUTOINCREMENT, country)";
+    public static final String create_table_countries="CREATE TABLE countries(id_country INTEGER PRIMARY KEY AUTOINCREMENT, country)";
     public static final String drop_table_countries="DROP TABLE IF EXISTS countries";
     public static final String insert_table_countries="INSERT INTO countries(country) VALUES('Honduras (504)'), ('Costa Rica (506)'), ('Guatemala (502)'), ('El Salvador (503)')";
     public static final String select_table_countries="SELECT * FROM "+Transactions.table_countries;
