@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PM2E1-0007-0084</string>
+    <string name="country">País</string>
+    <string name="name">Nombre</string>
+    <string name="phone">Telefono</string>
+    <string name="note">Nota</string>
+    <string name="btn_save_contact">Salvar contacto</string>
+    <string name="btn_saved_contacts">Contactos salvados</string>
+</resources>
