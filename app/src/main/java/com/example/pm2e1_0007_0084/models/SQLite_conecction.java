@@ -15,6 +15,7 @@ public class SQLite_conecction extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Transactions.create_table_countries);
         db.execSQL(Transactions.create_table_contacts);
+        db.execSQL(Transactions.insert_table_countries);
     }
 
     @Override
