@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -48,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
         txt_phone=findViewById(R.id.txt_phone);
         photo=findViewById(R.id.imageView);
 
+        btn_saved_contacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Activity_list_view.class);
+                startActivity(intent);
+            }
+        });
+
         List<Countries_data> countries_data=fill_countries();
         ArrayAdapter<Countries_data> arrayAdapter=new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, countries_data);
         sp_countries.setAdapter(arrayAdapter);
@@ -56,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(validate()==true){
-                    //inserta
+                    AgregarContacto();
+                    ClearScreen();
                 }
             }
         });
@@ -149,12 +159,10 @@ public class MainActivity extends AppCompatActivity {
         db.close();
 
     }
-    /*private void ClearScreen()
+    private void ClearScreen()
     {
-
-        comboPais.setSelection(0);
-        nombre.setText("");
-        telefono.setText("");
-        nota.setText("");
-    }*/
+        txt_name.setText("");
+        txt_phone.setText("");
+        txt_note.setText("");
+    }
 }
