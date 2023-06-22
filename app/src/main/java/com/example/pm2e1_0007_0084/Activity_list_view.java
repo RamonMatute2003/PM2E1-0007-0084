@@ -54,7 +54,7 @@ private Boolean Selected = false;
         Button btneliminar = (Button)findViewById(R.id.btneliminar);
         Button btnactualizar = (Button)findViewById(R.id.btnactualizar);
 
-        btnllamar = (Button)findViewById(R.id.btnllamar);
+        btnllamar = (Button)findViewById(R.id.btn_view_image);
 
         btnregresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +103,9 @@ private Boolean Selected = false;
                     }
                 });
 
-                btnllamar.setOnClickListener(new View.OnClickListener() {
+                listacontactos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        selec2.setSelected(true);
-
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         AlertDialog.Builder builder= new AlertDialog.Builder(Activity_list_view.this);
                         builder.setMessage("¿Quiere realizar una llamada?");
                         builder.setTitle("LLAMADA");
@@ -117,12 +115,6 @@ private Boolean Selected = false;
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 mostrarnumero();
-
-                                /*Intent t = new Intent(Intent.ACTION_CALL, Uri.parse("tel:96603565"));
-                                if (ActivityCompat.checkSelfPermission(ActivityListView.this, Manifest.permission.CALL_PHONE)!=
-                                        PackageManager.PERMISSION_GRANTED)
-                                    return;
-                                startActivity(t);*/
 
                             }
                         });
@@ -139,8 +131,6 @@ private Boolean Selected = false;
                         dialog.show();
                     }
                 });
-
-
             }
         });
 

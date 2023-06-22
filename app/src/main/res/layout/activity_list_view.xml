@@ -28,10 +28,10 @@
         android:choiceMode="singleChoice" />
 
     <Button
-        android:id="@+id/btnllamar"
+        android:id="@+id/btn_view_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Llamar Contacto" />
+        android:text="Ver Imagen" />
 
     <Button
         android:id="@+id/btncompartir"
