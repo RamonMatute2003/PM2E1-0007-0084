@@ -55,7 +55,7 @@ private Boolean Selected = false;
         Button btnactualizar = (Button)findViewById(R.id.btnactualizar);
         Button btncompartir= (Button)findViewById(R.id.btncompartir);
 
-        btnllamar = (Button)findViewById(R.id.btn_view_image);
+
 
         btnregresar.setOnClickListener(new View.OnClickListener() {
             @Override

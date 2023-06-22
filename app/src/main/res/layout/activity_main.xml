@@ -19,8 +19,9 @@
         android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="180dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView1"
         tools:srcCompat="@tools:sample/avatars" />
@@ -45,6 +46,7 @@
         android:layout_marginEnd="20dp"
         android:text="@string/country"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -154,5 +156,14 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btnfoto"
+        android:layout_width="109dp"
+        android:layout_height="77dp"
+        android:text="Tomar Foto"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="119dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
