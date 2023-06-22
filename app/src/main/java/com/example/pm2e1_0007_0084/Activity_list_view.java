@@ -85,7 +85,7 @@ private Boolean Selected = false;
 
             public void onItemClick (AdapterView<?> sele1, View selec2, int posicion, long select3){
 
-                telefono = ""+lista.get(posicion).getPhone();
+                telefono =""+lista.get(posicion).getPhone();
                 Selected = true;
 
 
@@ -138,7 +138,7 @@ private Boolean Selected = false;
                     public void onClick(View v) {
                         Intent share=new Intent(Intent.ACTION_SEND);
                         share.setType("text/text");
-                        share.putExtra(Intent.EXTRA_SUBJECT, lista.get(posicion).getName());
+                        share.putExtra(Intent.EXTRA_SUBJECT, lista.get(posicion).getName()+": "+lista.get(posicion).getPhone());
                         share.putExtra(Intent.EXTRA_TEXT, lista.get(posicion).getPhone());
                         startActivity(Intent.createChooser(share, "COMPARTIR"));
                     }
