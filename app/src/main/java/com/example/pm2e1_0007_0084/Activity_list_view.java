@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -224,4 +227,35 @@ private Boolean Selected = false;
         }
     }
 
+    private void show_image(){
+
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        String[] projection = {"image"};
+        Cursor cursor = db.query(Transactions.table_contacts, projection, null, null, null, null, null);
+
+        byte[] imageData = null;
+        if (cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("image");
+            imageData = cursor.getBlob(columnIndex);
+        }
+
+        cursor.close();
+        db.close();
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_layout, null);
+        builder.setView(dialogView);
+
+        builder.setTitle("Image Dialog");
+        builder.setPositiveButton("OK", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        ImageView imageView = dialogView.findViewById(R.id.imageView);
+        imageView.setImageBitmap(bitmap);
+    }
 }
