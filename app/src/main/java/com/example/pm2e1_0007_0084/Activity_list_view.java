@@ -37,7 +37,6 @@ public class Activity_list_view extends AppCompatActivity {
  SQLite_conecction conexion;
  ListView listacontactos;
  EditText id;
- private Button btnllamar;
 ArrayList<Contacts> lista;
 ArrayList<String> ArregloContactos;
 private String telefono;
@@ -169,9 +168,9 @@ private Boolean Selected = false;
         Contacts listContactos= null;
         lista = new ArrayList<Contacts>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + Transactions.table_contacts, null);
+        Cursor cursor = db.rawQuery("SELECT id_contact, id_country, name, phone FROM " + Transactions.table_contacts, null);
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext() && cursor!=null){
             listContactos = new Contacts();
             listContactos.setId(cursor.getInt(0));
             listContactos.setId_country(cursor.getInt(1));

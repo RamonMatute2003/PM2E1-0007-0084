@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         txt_note=findViewById(R.id.txt_note);
         txt_phone=findViewById(R.id.txt_phone);
 
-
         btn_saved_contacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
