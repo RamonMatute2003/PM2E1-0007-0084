@@ -56,6 +56,7 @@ private Boolean Selected = false;
         Button btneliminar = (Button)findViewById(R.id.btneliminar);
         Button btnactualizar = (Button)findViewById(R.id.btnactualizar);
         Button btncompartir= (Button)findViewById(R.id.btncompartir);
+        Button btn_show_image= (Button)findViewById(R.id.btn_show_image);
 
         btnregresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +89,14 @@ private Boolean Selected = false;
                 telefono =""+lista.get(posicion).getPhone();
                 Selected = true;
 
+                btn_show_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(getApplicationContext(), Activity_show_image.class);
+                        intent.putExtra("id",lista.get(posicion).getId());
+                        startActivity(intent);
+                    }
+                });
 
                 btneliminar.setOnClickListener(new View.OnClickListener() {
                     @Override
