@@ -57,7 +57,6 @@ private Boolean Selected = false;
         Button btneliminar = (Button)findViewById(R.id.btneliminar);
         Button btnactualizar = (Button)findViewById(R.id.btnactualizar);
         Button btncompartir= (Button)findViewById(R.id.btncompartir);
-        Button btn_show_image= (Button)findViewById(R.id.btn_show_image);
 
         btnregresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,41 +142,6 @@ private Boolean Selected = false;
                         share.putExtra(Intent.EXTRA_SUBJECT, lista.get(posicion).getName()+": "+lista.get(posicion).getPhone());
                         share.putExtra(Intent.EXTRA_TEXT, lista.get(posicion).getPhone());
                         startActivity(Intent.createChooser(share, "COMPARTIR"));
-                    }
-                });
-
-                btn_show_image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SQLiteDatabase db = conexion.getReadableDatabase();
-                        String[] projection = {"image"};
-                        String[] whereArgs = {lista.get(posicion).getId().toString()};
-                        Cursor cursor = db.query(Transactions.table_contacts, projection, "WHERE id_contact=?", whereArgs, null, null, null);
-
-                        byte[] imageData = null;
-                        if (cursor.moveToFirst()) {
-                            int columnIndex = cursor.getColumnIndex("image");
-                            imageData = cursor.getBlob(columnIndex);
-                        }
-
-                        cursor.close();
-                        db.close();
-
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-
-                        View dialogView = getLayoutInflater().inflate(R.layout.dialog_layout, null);
-                        builder.setView(dialogView);
-
-                        builder.setTitle("Image Dialog");
-                        builder.setPositiveButton("OK", null);
-
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-
-                        ImageView imageView = dialogView.findViewById(R.id.imageView);
-                        imageView.setImageBitmap(bitmap);
                     }
                 });
             }
