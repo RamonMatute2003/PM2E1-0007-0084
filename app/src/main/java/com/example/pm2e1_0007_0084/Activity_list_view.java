@@ -57,6 +57,14 @@ private Boolean Selected = false;
         Button btneliminar = (Button)findViewById(R.id.btneliminar);
         Button btnactualizar = (Button)findViewById(R.id.btnactualizar);
         Button btncompartir= (Button)findViewById(R.id.btncompartir);
+        Button btn_show_image= (Button)findViewById(R.id.btn_show_image);
+
+        btn_show_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                show_image();
+            }
+        });
 
         btnregresar.setOnClickListener(new View.OnClickListener() {
             @Override
