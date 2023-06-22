@@ -55,8 +55,6 @@ private Boolean Selected = false;
         Button btnactualizar = (Button)findViewById(R.id.btnactualizar);
         Button btncompartir= (Button)findViewById(R.id.btncompartir);
 
-
-
         btnregresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

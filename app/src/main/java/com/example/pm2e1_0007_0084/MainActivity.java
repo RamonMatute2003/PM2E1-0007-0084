@@ -36,6 +36,7 @@ import com.example.pm2e1_0007_0084.Settings.SQLite_conecction;
 import com.example.pm2e1_0007_0084.Settings.Transactions;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -100,20 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        /*sp_countries.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int id_1=((Countries_data) parent.getSelectedItem()).getId();
-
-                Toast.makeText(getApplicationContext(), "Id: "+id_1, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
     }
 
     private boolean validate(){
@@ -173,22 +160,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void AgregarContacto() {
-        SQLite_conecction conexion = new SQLite_conecction(   this, Transactions.name_database, null, 1);
-        SQLiteDatabase db = conexion.getWritableDatabase();
-        ContentValues valores = new ContentValues();
+        SQLite_conecction connection = new SQLite_conecction(   this, Transactions.name_database, null, 1);
+        SQLiteDatabase db = connection.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        byte[] photoData = getPhotoData();
 
-        valores.put(Transactions.name ,txt_name.getText().toString());
-        valores.put(Transactions.phone, txt_phone.getText().toString());
-        valores.put(Transactions.note, txt_note.getText().toString());
-        //valores.put(Transactions.photo, .getText().toString());
+        values.put(Transactions.name ,txt_name.getText().toString());
+        values.put(Transactions.phone, txt_phone.getText().toString());
+        values.put(Transactions.note, txt_note.getText().toString());
+        values.put(Transactions.photo, photoData);
 
+        Long response = db.insert(Transactions.table_contacts, Transactions.id, values);
 
-        Long resultado = db.insert(Transactions.table_contacts, Transactions.id, valores);
-        Toast.makeText(getApplicationContext(), "Registro Ingresado:" + resultado.toString(),Toast.LENGTH_LONG).show();
+        if(response!=-1){
+            Toast.makeText(getApplicationContext(), "Registro Ingresado:" + response.toString(),Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Ha ocurrido un error:" + response.toString(),Toast.LENGTH_LONG).show();
+        }
 
         db.close();
 
     }
+
+    private byte[] getPhotoData() {
+        try {
+            File photoFile = new File(currentPhotoPath);
+            FileInputStream file = new FileInputStream(photoFile);
+            byte[] photoData = new byte[(int) photoFile.length()];
+            file.read(photoData);
+            file.close();
+            return photoData;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private void ClearScreen()
     {
         txt_name.setText("");
@@ -249,7 +256,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private File createImageFile() throws IOException {
-        // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
