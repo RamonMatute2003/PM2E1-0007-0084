@@ -228,15 +228,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void TomarFoto()
-    {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        if(intent.resolveActivity(getPackageManager())!= null)
-        {
-            startActivityForResult(intent, peticion_captura_imagen );
-        }
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -244,11 +235,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode  == peticion_captura_imagen)
         {
-            /*
-            Bundle extras = data.getExtras();
-            Bitmap imagen = (Bitmap) extras.get("data");
-            Objetoimagen.setImageBitmap(imagen);
-             */
 
             try {
                 File foto = new File(currentPhotoPath);
