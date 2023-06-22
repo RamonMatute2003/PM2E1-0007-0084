@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
         values.put(Transactions.name ,txt_name.getText().toString());
         values.put(Transactions.phone, txt_phone.getText().toString());
         values.put(Transactions.note, txt_note.getText().toString());
-        values.put(Transactions.photo, photoData);
+        values.put(Transactions.image, photoData);
 
         Long response = db.insert(Transactions.table_contacts, Transactions.id, values);
 
