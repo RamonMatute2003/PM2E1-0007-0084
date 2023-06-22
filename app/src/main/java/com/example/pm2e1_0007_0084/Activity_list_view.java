@@ -107,6 +107,8 @@ private Boolean Selected = false;
                         SQLiteDatabase db = conexion.getWritableDatabase();
                         String sql = "DELETE FROM contacts WHERE id_contact="+lista.get(posicion).getId();
                         db.execSQL(sql);
+                        Intent i = new Intent(Activity_list_view.this, Activity_list_view.class);
+                        startActivity(i);
                         finish();
                     }
                 });
