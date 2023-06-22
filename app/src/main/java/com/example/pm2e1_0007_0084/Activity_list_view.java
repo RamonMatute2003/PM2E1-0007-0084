@@ -53,6 +53,7 @@ private Boolean Selected = false;
         Button btnregresar = (Button)findViewById(R.id.btnregresar);
         Button btneliminar = (Button)findViewById(R.id.btneliminar);
         Button btnactualizar = (Button)findViewById(R.id.btnactualizar);
+        Button btncompartir= (Button)findViewById(R.id.btncompartir);
 
         btnllamar = (Button)findViewById(R.id.btn_view_image);
 
@@ -129,6 +130,17 @@ private Boolean Selected = false;
 
                         AlertDialog dialog= builder.create();
                         dialog.show();
+                    }
+                });
+
+                btncompartir.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent share=new Intent(Intent.ACTION_SEND);
+                        share.setType("text/text");
+                        share.putExtra(Intent.EXTRA_SUBJECT, lista.get(posicion).getName());
+                        share.putExtra(Intent.EXTRA_TEXT, lista.get(posicion).getPhone());
+                        startActivity(Intent.createChooser(share, "COMPARTIR"));
                     }
                 });
             }
