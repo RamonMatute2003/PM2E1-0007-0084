@@ -85,7 +85,7 @@ private Boolean Selected = false;
 
             public void onItemClick (AdapterView<?> sele1, View selec2, int posicion, long select3){
 
-                telefono = "+"+lista.get(posicion).getPhone();
+                telefono = ""+lista.get(posicion).getPhone();
                 Selected = true;
 
 
