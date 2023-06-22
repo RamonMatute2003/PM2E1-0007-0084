@@ -59,13 +59,6 @@ private Boolean Selected = false;
         Button btncompartir= (Button)findViewById(R.id.btncompartir);
         Button btn_show_image= (Button)findViewById(R.id.btn_show_image);
 
-        btn_show_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                show_image();
-            }
-        });
-
         btnregresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +145,41 @@ private Boolean Selected = false;
                         startActivity(Intent.createChooser(share, "COMPARTIR"));
                     }
                 });
+
+                btn_show_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SQLiteDatabase db = conexion.getReadableDatabase();
+                        String[] projection = {"image"};
+                        String[] whereArgs = {lista.get(posicion).getId().toString()};
+                        Cursor cursor = db.query(Transactions.table_contacts, projection, "WHERE id_contact=?", whereArgs, null, null, null);
+
+                        byte[] imageData = null;
+                        if (cursor.moveToFirst()) {
+                            int columnIndex = cursor.getColumnIndex("image");
+                            imageData = cursor.getBlob(columnIndex);
+                        }
+
+                        cursor.close();
+                        db.close();
+
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+
+                        View dialogView = getLayoutInflater().inflate(R.layout.dialog_layout, null);
+                        builder.setView(dialogView);
+
+                        builder.setTitle("Image Dialog");
+                        builder.setPositiveButton("OK", null);
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+                        ImageView imageView = dialogView.findViewById(R.id.imageView);
+                        imageView.setImageBitmap(bitmap);
+                    }
+                });
             }
         });
 
@@ -233,37 +261,5 @@ private Boolean Selected = false;
                 Toast.makeText(this, "NO TIENE ACCESO", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    private void show_image(){
-
-        SQLiteDatabase db = conexion.getReadableDatabase();
-        String[] projection = {"image"};
-        Cursor cursor = db.query(Transactions.table_contacts, projection, null, null, null, null, null);
-
-        byte[] imageData = null;
-        if (cursor.moveToFirst()) {
-            int columnIndex = cursor.getColumnIndex("image");
-            imageData = cursor.getBlob(columnIndex);
-        }
-
-        cursor.close();
-        db.close();
-
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_layout, null);
-        builder.setView(dialogView);
-
-        builder.setTitle("Image Dialog");
-        builder.setPositiveButton("OK", null);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        ImageView imageView = dialogView.findViewById(R.id.imageView);
-        imageView.setImageBitmap(bitmap);
     }
 }
