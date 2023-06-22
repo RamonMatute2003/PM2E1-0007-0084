@@ -32,23 +32,14 @@ import java.util.ArrayList;
 
 public class Activity_list_view extends AppCompatActivity {
  SQLite_conecction conexion;
-
  ListView listacontactos;
-
  EditText id;
-
  private Button btnllamar;
-
 ArrayList<Contacts> lista;
-
 ArrayList<String> ArregloContactos;
-
 private String telefono;
-
 private static final int REQUEST_CALL = 1;
-
 private Boolean Selected = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +95,7 @@ private Boolean Selected = false;
 
                         selec2.setSelected(true);
                         SQLiteDatabase db = conexion.getWritableDatabase();
-                        String sql = "DELETE FROM contactos WHERE id="+lista.get(posicion).getCountry();
+                        String sql = "DELETE FROM contacts WHERE id_contact="+lista.get(posicion).getId();
                         db.execSQL(sql);
                         Intent i = new Intent(Activity_list_view.this, Activity_list_view.class);
                         startActivity(i);
@@ -179,7 +170,8 @@ private Boolean Selected = false;
 
         while (cursor.moveToNext()){
             listContactos = new Contacts();
-            listContactos.setCountry(cursor.getString(0));
+            listContactos.setId(cursor.getInt(0));
+            listContactos.setId_country(cursor.getInt(1));
             listContactos.setName(cursor.getString(2));
             listContactos.setPhone(cursor.getInt(3));
 
@@ -196,7 +188,7 @@ private Boolean Selected = false;
 
         for (int i = 0;  i < lista.size(); i++){
 
-            ArregloContactos.add(lista.get(i).getCountry() + " | "
+            ArregloContactos.add(lista.get(i).getId() + " | "
                     +lista.get(i).getName() + " | "
                     +lista.get(i).getPhone());
 

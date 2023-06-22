@@ -1,18 +1,27 @@
 package com.example.pm2e1_0007_0084.Models;
 
 public class Contacts {
-    private String country;
+    private Integer id_country;
+    private Integer id_contact;
     private String name;
     private Integer phone;
     private String note;
     private String photo;
 
-    public String getCountry() {
-        return country;
+    public Integer getId_country() {
+        return id_country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setId_country(Integer id_country) {
+        this.id_country = id_country;
+    }
+
+    public Integer getId() {
+        return id_contact;
+    }
+
+    public void setId(Integer id) {
+        this.id_contact = id;
     }
 
     public String getName() {
